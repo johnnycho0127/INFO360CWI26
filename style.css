@@ -1,0 +1,235 @@
+/* --- CSS Variables --- */
+:root {
+    --primary-purple: #3F2B73;
+    --light-purple: #F3F0FB;
+    --card-border: #C9C2E0;
+    --white: #ffffff;
+    --text-dark: #333333;
+    --text-light: #666666;
+    --link-color: #0066cc;
+}
+
+/* --- Base Styles --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-purple);
+    color: var(--text-dark);
+    padding-bottom: 50px;
+}
+
+/* --- Header --- */
+.main-header {
+    background-color: var(--primary-purple);
+    color: var(--white);
+    padding: 2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-header h1 { font-size: 2rem; font-weight: normal; }
+.main-header h2 { font-size: 1.5rem; font-weight: normal; }
+
+/* --- Controls (UPDATED for Right Alignment) --- */
+.controls {
+    padding: 2rem 5%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    /* justify-content: space-between;  <-- Removed to let margin-left: auto work */
+}
+.filters { display: flex; gap: 15px; flex-wrap: wrap; }
+.filter-btn {
+    padding: 0.6rem 1.5rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid var(--primary-purple);
+    background-color: var(--white);
+    color: var(--primary-purple);
+    font-weight: 600;
+}
+.filter-btn.active, .filter-btn:hover {
+    background-color: var(--primary-purple);
+    color: var(--white);
+}
+
+.search-container {
+    display: flex;
+    border: 2px solid var(--primary-purple);
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: var(--white);
+    
+    /* NEW: This forces the search bar to the far right */
+    margin-left: auto; 
+}
+
+.search-label {
+    background-color: var(--primary-purple);
+    color: var(--white);
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+#search-input {
+    border: none;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    outline: none;
+    min-width: 200px;
+}
+
+/* --- Grid --- */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Slightly wider cards */
+    gap: 30px;
+    padding: 0 5%;
+}
+
+/* --- Cards --- */
+.project-card {
+    background-color: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(63, 43, 115, 0.15);
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.2s;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+/* --- Image Styles (Preserved) --- */
+.card-image {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background-color: #eaeaea;
+    border-bottom: 1px solid var(--card-border);
+}
+.card-image img {
+    width: 100%;
+    height: 100%;
+    /* CHANGED: 'contain' ensures the whole image is shown */
+    object-fit: contain; 
+    /* OPTIONAL: changing background to white often looks cleaner with 'contain' */
+    background-color: white; 
+}
+
+.card-header {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--card-border);
+    background-color: #fbfaff;
+}
+.card-header h3 {
+    font-size: 1.2rem;
+    color: var(--primary-purple);
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.team-info {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed #e0e0e0;
+}
+.team-name { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.3rem; }
+.team-members { font-size: 0.9rem; color: var(--text-light); font-style: italic; line-height: 1.4; }
+
+.description {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.keywords-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+}
+.keyword-label {
+    color: var(--primary-purple);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--primary-purple);
+    border-radius: 12px;
+}
+.keyword {
+    font-size: 0.85rem;
+    color: var(--primary-purple);
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    background-color: #f9f8fd;
+}
+
+/* --- Project Link Button --- */
+.project-link {
+    display: block;
+    text-align: center;
+    background-color: var(--primary-purple);
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: auto; /* Pushes button to very bottom */
+    transition: background-color 0.2s;
+}
+.project-link:hover {
+    background-color: #553b9e;
+}
+
+.hidden { display: none !important; }
+
+/* --- Footer Section (NEW) --- */
+.footer {
+    background-color: var(--primary-purple);
+    color: var(--white);
+    text-align: center;
+    padding: 3rem 1rem;
+    margin-top: 5rem;
+    box-shadow: 0 -4px 10px rgba(63, 43, 115, 0.2);
+}
+
+.contributor {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.contributor::before {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin: 0 auto 15px auto;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .main-header, .controls { flex-direction: column; text-align: center; gap: 1rem; }
+    .search-container, #search-input { width: 100%; }
+}
