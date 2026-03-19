@@ -3,162 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Info 300 Research Projects-AU’25</title>
-    <link rel="stylesheet" href="style.css">
+    <title>INFO 360 Winter Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #4b2e83; /* UW Purple */
+            --accent: #b7a57a;  /* UW Gold */
+            --bg: #f8f9fa;
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Header / Hero */
+        .hero-section {
+            background: var(--white);
+            padding: 80px 0 40px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .course-code {
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        h1 { margin: 20px 0 10px; font-size: 2.5rem; font-weight: 800; color: var(--primary); }
+        .subtitle { color: var(--text-muted); font-size: 1.1rem; }
+
+        /* Search Bar */
+        .controls {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .search-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        #search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(75, 46, 131, 0.1);
+        }
+
+        /* Grid Layout */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            padding-bottom: 80px;
+        }
+
+        /* Card Styling */
+        .project-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            background: #eee; /* Fallback color */
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+        }
+
+        .card-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .meta-info {
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .keywords-container {
+            margin-top: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .keyword {
+            background: #f0f0f0;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .main-footer {
+            padding: 60px 0;
+            background: #222;
+            color: #999;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
 
-    <header class="main-header">
-        <h1>Info 300 Research Methods-AU’25</h1>
-        <h2>Student Research Proposal</h2>
+    <header class="hero-section">
+        <div class="container">
+            <span class="course-code">INFO 360</span>
+            <h1>Winter Students Web Portfolio</h1>
+            <p class="subtitle">Showcasing 23 Innovative Student Research Proposals</p>
+        </div>
     </header>
 
     <section class="controls">
-        <div class="search-container">
-            <label for="search-input" class="search-label">Search?</label>
-            <input type="text" id="search-input" placeholder="keyword, team, or student...">
+        <div class="search-wrapper">
+            <input type="text" id="search-input" placeholder="Search by team, student, or keyword...">
         </div>
     </section>
 
-    <main class="project-grid" id="project-grid">
-
-  <article class="project-card">
-            <div class="card-image">
-                <img src="images/esports.png" alt="Esports Stress">
-            </div>
-            <div class="card-header">
-                <h3>Playing Under Pressure: Causes of Stress and Coping Mechanisms in Collegiate Esports</h3>
-            </div>
-            <div class="card-body">
-                <div class="team-info">
-                    <h4 class="team-name">Team: Faker</h4>
-                    <p class="team-members">Members: David, Lander, Benson</p>
+    <main class="container">
+        <div class="project-grid" id="project-grid">
+            
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/esports.png" alt="Esports Stress">
+                    <div class="team-badge">Team: Faker</div>
                 </div>
-
-                <p class="description">Collegiate esports players face significant psychological challenges, including performance pressure and toxicity. This mixed-methods study investigates the primary causes of stress and the coping strategies used by collegiate players through quantitative survey data and qualitative interviews...</p>
-                
-                <div class="keywords-container">
-                    <span class="keyword">Esports</span>
-                    <span class="keyword">Stress</span>
-                    <span class="keyword">Toxicity</span>
-                    <span class="keyword">Coping Strategy</span>
+                <div class="card-content">
+                    <div class="meta-info">David, Lander, Benson</div>
+                    <h3>Playing Under Pressure: Causes of Stress in Esports</h3>
+                    <p class="description">Collegiate esports players face significant psychological challenges, including performance pressure and toxicity...</p>
+                    <div class="keywords-container">
+                        <span class="keyword">Esports</span>
+                        <span class="keyword">Stress</span>
+                    </div>
+                    <a href="https://docs.google.com/document/d/14jxpjQg9aCgIVbg6H1OSWqM0WJMulFNNk2j8LNLu3c0/edit" target="_blank" class="project-link">View Proposal Document</a>
                 </div>
-                <a href="https://docs.google.com/document/d/14jxpjQg9aCgIVbg6H1OSWqM0WJMulFNNk2j8LNLu3c0/edit?tab=t.ndfgmuegqsm7" target="_blank" class="project-link">View Proposal Document</a>
-            </div>
-        </article>
+            </article>
 
-        
-        <article class="project-card">
-            <div class="card-image">
-                <img src="images/phishing.png" alt="Phishing Concept Art">
             </div>
-            <div class="card-header">
-                <h3>Baited: Exploring how Phishing Scams Strike Colleges</h3>
-            </div>
-            <div class="card-body">
-                <div class="team-info">
-                    <h4 class="team-name">Team: Gobling Gang</h4>
-                    <p class="team-members">Members: Diego Licea, Jace Ladenburg</p>
-                </div>
-
-                <p class="description">Phishing Scams are harmful and dangerous attacks that look to obtain the victim's personal information or money. Such scams are especially concerning in academia, where students and faculty’s sensitive information is at risk. This study looks into the frequency and severity of phishing attacks in a university setting. It utilizes an online survey of the target population and statistical analysis methods...</p>
-                
-                <div class="keywords-container">
-                    <span class="keyword">Phishing</span>
-                    <span class="keyword">Cybersecurity</span>
-                    <span class="keyword">Fraud</span>
-                    <span class="keyword">College</span>
-                    <span class="keyword">Internet Safety</span>
-                </div>
-                
-                <a href="https://docs.google.com/document/d/1TiXCw7n4KIVq4jiptmYA8HUX6V_G4BZ7f_f2_AYxzTE/edit?tab=t.0" target="_blank" class="project-link">View Proposal Document</a>
-            </div>
-        </article>
-
-        <article class="project-card">
-            <div class="card-image">
-                <img src="images/label.png" alt="Gamification Concept">
-            </div>
-            <div class="card-header">
-                <h3>Variation in Learning Outcomes Between Gamified and Traditional Learning Methods</h3>
-            </div>
-            <div class="card-body">
-                <div class="team-info">
-                    <h4 class="team-name">Team: F4</h4>
-                    <p class="team-members">Members: Carmen Reyes, Isaac Gurney, Anthony Faldetta</p>
-                </div>
-
-                <p class="description">Gamified learning platforms such as Duolingo have become a dominant force in language education. This trend raises a critical question: Do these game-like elements contribute to meaningful learning? Our research investigates this question by comparing a gamified approach with a traditional flashcard method in teaching German vocabulary...</p>
-                
-                <div class="keywords-container">
-                    <span class="keyword">Gamified Learning</span>
-                    <span class="keyword">Language Acquisition</span>
-                    <span class="keyword">Educational Technology</span>
-                    <span class="keyword">Duolingo</span>
-                </div>
-
-                <a href="https://docs.google.com/document/d/1EST5SeXgBybpUOp4mQDtHn__YjiHVx2U/edit?usp=sharing" target="_blank" class="project-link">View Proposal Document</a>
-            </div>
-        </article>
-
-        <article class="project-card">
-            <div class="card-image">
-                <img src="images/nlp.png" alt="AI Research">
-            </div>
-            <div class="card-header">
-                <h3>Understanding How Speech-Recognition and Transcription Technology Shapes Note-Taking</h3>
-            </div>
-            <div class="card-body">
-                <div class="team-info">
-                    <h4 class="team-name">Team: Ai girls</h4>
-                    <p class="team-members">Members: Han Lin, Emily Wang Santamaria, Peitong Qi</p>
-                </div>
-
-                <p class="description">This study explores how speech recognition and transcription technologies influence undergraduate students' note-taking habits, comprehension, and overall learning experience. We surveyed 71 students to understand who uses these tools, why, and the challenges they encounter...</p>
-                
-                <div class="keywords-container">
-                    <span class="keyword">Speech Recognition</span>
-                    <span class="keyword">Transcription</span>
-                    <span class="keyword">Note-Taking</span>
-                    <span class="keyword">AI in Education</span>
-                </div>
-
-                <a href="https://docs.google.com/document/d/1LddWE4XfrN986IkLSdwXkfY6fjzVznsWspHQ160FArc/edit?tab=t.0" target="_blank" class="project-link">View Proposal Document</a>
-            </div>
-        </article>
-        
-                    <article class="project-card">
-            <div class="card-image">
-                <img src="images/504.png" alt="iSchool Career Readiness">
-            </div>
-            <div class="card-header">
-                <h3>Evaluating iSchool Career Readiness</h3>
-            </div>
-            <div class="card-body">
-                <div class="team-info">
-                    <h4 class="team-name">Team: 504 Error</h4>
-                    <p class="team-members">Members: Roman Nekrasov, Ada Chen, Parineetha Karumanchi</p>
-                </div>
-
-                <p class="description">The information and technology job market is evolving rapidly, driven by advances in artificial intelligence, data science, cybersecurity, cloud computing, and user experience design. Universities, particularly information schools, play a critical role in preparing students to meet these demands...</p>
-                
-                <div class="keywords-container">
-                    <span class="keyword">Information School</span>
-                    <span class="keyword">Technology job market</span>
-                    <span class="keyword">Professional Development,</span>
-                    <span class="keyword">iSchool</span>
-                    <span class="keyword">University of Washington</span>
-                </div>
-                
-                <a href="https://docs.google.com/document/d/16RISvLRmYCeP953LCNwXDWjmzRtvzNawG-ELJdSpvXg/edit?usp=sharing" target="_blank" class="project-link">View Proposal Document</a>
-            </div>
-        </article>
-
     </main>
-<footer class="footer">
-     <p class="contributor">Instructor: Johnny Cho</p>    
-    <p class="contributor">Website Contributor: Ziyi Wang </p>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p><strong>Instructor:</strong> Johnny Cho</p>
+            <p><strong>Contributor:</strong> Ziyi Wang</p>
+        </div>
     </footer>
-    <script src="script.js"></script>
+
+    <script>
+        // Optional: Simple search functionality
+        document.getElementById('search-input').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.project-card');
+            
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(term) ? 'flex' : 'none';
+            });
+        });
+    </script>
 </body>
 </html>
