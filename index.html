@@ -10,7 +10,7 @@
         :root {
             --primary: #4b2e83; /* UW Purple */
             --accent: #b7a57a;  /* UW Gold */
-            --bg: #f8f9fa;
+            --bg: #e8e4f3;
             --text-main: #2d3436;
             --text-muted: #636e72;
             --white: #ffffff;
@@ -31,7 +31,7 @@
 
         /* Header / Hero */
         .hero-section {
-            background: var(--white);
+            background: var(--primary);
             padding: 80px 0 40px;
             text-align: center;
             border-bottom: 1px solid #eee;
@@ -47,7 +47,7 @@
             letter-spacing: 1px;
         }
 
-        h1 { margin: 20px 0 10px; font-size: 2.5rem; font-weight: 800; color: var(--primary); }
+        h1 { margin: 20px 0 10px; font-size: 2.5rem; font-weight: 800; color: var(--white); }
         .subtitle { color: var(--text-muted); font-size: 1.1rem; }
 
         /* Search Bar */
@@ -65,14 +65,6 @@
             max-width: 600px;
             margin: 0 auto;
             position: relative;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
         }
 
         #search-input {
@@ -119,7 +111,7 @@
             height: 200px;
             position: relative;
             overflow: hidden;
-            background: #eee; /* Fallback color */
+            background: #eee;
         }
 
         .card-image img {
@@ -160,15 +152,38 @@
             line-height: 1.4;
         }
 
+        /* Abstract — collapsed by default, 3 lines */
         .description {
             font-size: 0.95rem;
             color: var(--text-muted);
-            margin-bottom: 20px;
+            margin-bottom: 6px;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            transition: all 0.3s ease;
         }
+
+        .description.expanded {
+            display: block;
+            -webkit-line-clamp: unset;
+            overflow: visible;
+        }
+
+        .read-more-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0;
+            margin-bottom: 16px;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .read-more-btn:hover { text-decoration: underline; }
 
         .keywords-container {
             margin-top: auto;
@@ -186,14 +201,44 @@
             color: var(--text-muted);
         }
 
+        /* Links row */
+        .card-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
         .project-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             text-decoration: none;
             color: var(--primary);
             font-weight: 700;
             font-size: 0.9rem;
+        }
+
+        .project-link:hover { text-decoration: underline; }
+
+        /* Video link — red */
+        .project-link.video-link { color: #c0392b; }
+
+        /* Interactive website — green pill */
+        .project-link.interactive-link {
+            background: #1a7a4a;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .project-link.interactive-link:hover {
+            background: #155e39;
+            text-decoration: none;
         }
 
         .main-footer {
@@ -223,7 +268,8 @@
 
     <main class="container">
         <div class="project-grid" id="project-grid">
-            
+
+            <!-- TEAM 0 -->
             <article class="project-card">
                 <div class="card-image">
                     <img src="images/esports.png" alt="Esports Stress">
@@ -232,36 +278,633 @@
                 <div class="card-content">
                     <div class="meta-info">David, Lander, Benson</div>
                     <h3>Playing Under Pressure: Causes of Stress in Esports</h3>
-                    <p class="description">Collegiate esports players face significant psychological challenges, including performance pressure and toxicity...</p>
+                    <p class="description">Collegiate esports players face significant psychological challenges, including performance pressure and toxicity. This mixed-methods study investigates the primary causes of stress and the coping strategies used by collegiate players through quantitative survey data and qualitative interviews.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
                     <div class="keywords-container">
                         <span class="keyword">Esports</span>
                         <span class="keyword">Stress</span>
+                        <span class="keyword">Toxicity</span>
+                        <span class="keyword">Coping Strategy</span>
                     </div>
-                    <a href="https://docs.google.com/document/d/14jxpjQg9aCgIVbg6H1OSWqM0WJMulFNNk2j8LNLu3c0/edit" target="_blank" class="project-link">View Proposal Document</a>
+                    <div class="card-links">
+                        <a href="https://docs.google.com/document/d/14jxpjQg9aCgIVbg6H1OSWqM0WJMulFNNk2j8LNLu3c0/edit" target="_blank" class="project-link">📄 View Proposal</a>
+                    </div>
                 </div>
             </article>
 
-            </div>
+
+            <!-- TEAM 1 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/Team1.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 1</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Adam Ketefian, Soham Purohit, Arvin Hakakian</div>
+                    <h3>Aptos: A PM Flight Simulator for Aspiring Product Managers</h3>
+                    <p class="description">Asynchronous learning environments currently sever the social and cognitive ties necessary for effective peer critique, resulting in superficial exchanges that hinder student growth. By failing to support the complex social dynamics and cognitive load of giving feedback, existing tools leave students isolated and anxious. Therefore, we must design a new interaction model that scaffolds the critique process, reducing the social risk and cognitive burden of peer review to restore it as a powerful engine for learning.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Asynchronous learning</span>
+                        <span class="keyword">Peer critique</span>
+                        <span class="keyword">Social dynamics</span>
+                        <span class="keyword">Cognitive scaffolding</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1c7_bGF3PaxmroeE4k7Br0tqLaTRWnBrq/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://drive.google.com/file/d/1oYuIPFCQVXZ3Qv-v-jt3_UYs8giSBLbv/view" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                        <a href="https://v0-static-project-prototype.vercel.app/" target="_blank" class="project-link interactive-link">🖱 Try It</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 2 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team2.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 2</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Bhavya, Filly, Armaan</div>
+                    <h3>Diverge: Design app for artists and designers to break out of algorithmic echo chambers by turning passive inspiration into an active creative process.</h3>
+                    <p class="description">When artists and designers look for inspiration in their creative learning process they often turn to platforms such as Instagram or Pinterest. Because these platforms rely on engagement driven recommendation systems, they mostly show what's popular rather than what is personally meaningful or creatively useful for the artist or designer. This causes users to fall into the repetitive culture of trends and trend chasing, rather than developing their own creative process. It becomes easier to keep scrolling for references rather than to actually create. Over time the same "aesthetic categories" keep getting reinforced across different apps only making it harder to experiment and keep your work feeling original. The result is a learning environment that rewards copying what already works instead of exploring what could be original.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Design</span>
+                        <span class="keyword">Creativity</span>
+                        <span class="keyword">Algorithmic bias</span>
+                        <span class="keyword">Inspiration</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1IKh8PB2Vl0EuZSi3M-gSr_XiDEvfte3O/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://youtu.be/h88GuiTiIVg?si=i6LmTABQUZU8pEAp" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 3 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team3.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 3</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Jessie Zhuang, Ling Wang, Rain Hou</div>
+                    <h3>Level UP: A gamified coding practice platform for STEM students with instant feedback, visible progress, and rewards.</h3>
+                    <p class="description">Many university students find it hard to stay focused on learning because schoolwork often feels slow, stressful, and unclear, especially compared to digital entertainment. When effort does not lead to quick and visible results, students are more likely to avoid academic tasks and choose activities that feel easier and more rewarding. Most existing solutions focus on controlling behavior instead of understanding how students emotionally experience learning. This shows that procrastination is not just about poor time management, but about how learning is structured and felt in the moment.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Job Search</span>
+                        <span class="keyword">Coding Skills</span>
+                        <span class="keyword">STEM</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1c3kL-LgDF94BJjiVIjdw-auJ7j2n-_pk/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://youtu.be/MM5loX5P-Es" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                        <a href="https://lightrainqaq.github.io/high-fidelity-prototype/" target="_blank" class="project-link interactive-link">🖱 Try It</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 4 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team4.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 4</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Saket Marina, Rohan Rajesh, Bosen Shen</div>
+                    <h3>FirstPay: Financial literacy app that helps young adults entering the workforce understand and manage their paychecks, debts, and savings through interactive and real-time guidance.</h3>
+                    <p class="description">Many people struggle to manage their finances well due to a lack of financial knowledge. This can lead to problems in the future that are very hard to fix (credit card/student debt, credit scores, etc.). Existing budgeting apps track spending but do not actively teach users how to make better financial choices. Without personalized guidance and motivation, users often repeat the same financial mistakes and feel overwhelmed or disengaged with their finances. There is a real need for a learning based financial planning experience that combines budgeting, debt decision-making, and gamified education to build confidence and long-term financial literacy.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Financial literacy</span>
+                        <span class="keyword">Personalized guidance</span>
+                        <span class="keyword">Budgeting</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1phvkWqCKqrs6MFoXNT9iF4vrLNsNuBWD/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://drive.google.com/file/d/1ch5z_7cqc1GuqVLR3Otw6gs9ZDCbTc52/view?usp=sharing" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                        <a href="https://rohan-rajesh.github.io/firstpay_info360/00-splash.html" target="_blank" class="project-link interactive-link">🖱 Try It</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 5 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team5.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 5</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Maruf Hassen, Khalid Said, Saad Mohammednur</div>
+                    <h3>DoomGuard: Help students stay focused during study sessions by interrupting distraction in real time.</h3>
+                    <p class="description">Due to ongoing digital distractions that disrupt concentration and introspection, students find it difficult to participate in meaningful learning. Although emphasis is placed on restriction than on assisting students in understanding and managing their attention, current technologies are unable to solve this problem. This results in passive consumption as opposed to active learning. A design-based strategy that encourages deliberate focus and introspection in digital learning environments is obviously needed.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Concentration</span>
+                        <span class="keyword">Digital distraction</span>
+                        <span class="keyword">Doomscrolling</span>
+                        <span class="keyword">Intentional focus</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://docs.google.com/document/d/1e55LxPSd4HQaxMYH1dsPBC6wYZylSCrbjD5dIBzi9LQ/edit?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://youtu.be/TP6Rhwh8m5I?si=jrqqK5ZTpQa3tuPi" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 6 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team6.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 6</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">James Hu, Lander Peralta, Will Feng</div>
+                    <h3>VisionForward: Empowering visually-impaired students to access and understand in university classrooms</h3>
+                    <p class="description">Due to the reliance on visual resources in university classrooms and online platforms, students with visual impairments continue to experience learning challenges. Existing accessibility solutions fail to completely enable equal learning experiences due to improper integration and excessive costs. As a result, visually handicapped students learn less effectively and participate less in class than their classmates. This design project tackles the demand for more inclusive learning experiences by reimagining how educational content can be accessible and understood beyond visual media.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Education</span>
+                        <span class="keyword">Visual impairment</span>
+                        <span class="keyword">Learning tool</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1VPxc01lshJrEGsxPVvaOjslF1FHGgDX2/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://www.youtube.com/watch?v=rR3UdAyqsaE" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 7 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team7.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 7</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Nimai Belur, Vincent Lin, Eitan Grebnev</div>
+                    <h3>Socratic AI: Fostering Conceptual Understanding in Mathematics</h3>
+                    <p class="description">Students may overly depend on generative AI to complete their assignments and this creates a false sense of confidence in the subject and a lack of learning. This may be caused because it's easier to use AI rather than do it themselves or that they've become too dependent on it. To combat this, rather than remove the use of generative AI fully, we transform the use from dependence for the answer to guiding on how to get the answer.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Mathematics</span>
+                        <span class="keyword">Socratic learning</span>
+                        <span class="keyword">Education</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1CgWLIAANX5ZsmWoJPnXrifcPKQnfsTBh/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://youtu.be/dO9n0IcOiRA" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                        <a href="https://uni-interface-spark.lovable.app/" target="_blank" class="project-link interactive-link">🖱 Try It</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 8 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team8.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 8</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Melanie Luangpraseuth, Rose Mendoze, Misgana Okbagaber</div>
+                    <h3>SEL Planet: Reduce the negative impact of social challenges and improve both emotional well-being and academic engagement.</h3>
+                    <p class="description">Social challenges such as bullying, lack of peer support, and emotional stress create significant barriers to learning for 6-13-year-old elementary and middle school students. When these challenges are addressed through academic placements alone, such as holding students back or advancing them too quickly, students often experience further social and emotional harm. The core problem is the lack of a supportive system within schools that addresses students' social and emotional needs alongside learning, leaving many students disengaged, anxious, and unable to reach their full academic potential.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Mentorship</span>
+                        <span class="keyword">Motivation</span>
+                        <span class="keyword">Well-Being</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/173w9TNEgvpOrldSS_G_pht0VXnLc32qp/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://drive.google.com/file/d/1fKAR_-o5CjTk5epKqEt6Luu1ja0lPnN5/view?usp=sharing" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 9 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team9.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 9</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Wanqi Ni, Chloe He, Joel Elangovan</div>
+                    <h3>Week Book: A deadline journal that breathes with your stress</h3>
+                    <p class="description">Students struggle with procrastination and poor time management because existing tools like Canvas only remind them of deadlines without supporting proactive learning planning, leading to last-minute stress, rushed assignments, and avoidance behaviors that undermine genuine learning. This problem stems from both emotional factors (stress-induced avoidance) and the inadequacy of current deadline-focused systems that fail to help students manage their workload effectively. Our design will create a supportive planning system that reframes how students engage with their assignments, shifting from reactive deadline anxiety to proactive progress motivation. Ultimately, we hope to help students build sustainable habits and reduce overwhelm.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Academic Planning</span>
+                        <span class="keyword">Task Management</span>
+                        <span class="keyword">Procrastination</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1Y9Y2JKobLoeZbdK7Fvjwuyubv4XGCrvC/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://drive.google.com/file/d/1EFWMNIfsCGK8kEU3c8mzRZGuxp9gJIJG/view?usp=share_link" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                        <a href="https://chloejyh.github.io/weekbook/" target="_blank" class="project-link interactive-link">🖱 Try It</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 10 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team10.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 10</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Songling Ngo, David Gao, Hafsah Usman</div>
+                    <h3>CognifAI: Design specification for note taking from user-entered notes</h3>
+                    <p class="description">Engineering students need to transform large volumes of informal, messy notes into structured learning materials to allow for deep understanding and remembering complex concepts. 
+However, current note-taking tools either provide too little learning support or introduce overwhelming organizational systems too early in the process. 
+This creates cognitive overload, delays meaningful engagement with notes, and weakens learning outcomes. 
+To target this problem, we propose the design of an adaptive note-to-study experience that helps students build structure step by step, without forcing complex organization too early or disrupting their natural workflow.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Education</span>
+                        <span class="keyword">Note-Taking</span>
+                        <span class="keyword">Leaning tool</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1m2ITEVeNna1-VyEybinayfysSda26VGt/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://youtu.be/p881J_vpSlM" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 11 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team11.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 11</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Isabella Le, Mai Ho and Joe Chen</div>
+                    <h3>BrainSprout: Short-form video viewing learning platform that aims to turn expert knowledge into
+engaging bite-sized learning experiences</h3>
+                    <p class="description">As short-form video platforms are evolving dramatically and have dominated media consumption, people are losing the ability to think deeply, pay attention, and erode their deep learning capabilities. While instructors attempt to increase engagement and attention through long lectures and educational videos, these videos mostly just reinforce the surface understanding level. Students/learners only pay short-term attention to those videos without actually engaging in the lectures and the content. Additionally, as short-form educational videos opt for convenience rather than reflection or critical thinking, they lack interaction for learners to focus on and engage in. Because of this, students/learners may have brief moments of engagement but find it difficult to maintain focus and gain a deeper comprehension of academic content, leading to short attention span and short-term memory.    </p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Education</span>
+                        <span class="keyword">Short-Form Video</span>
+                        <span class="keyword">Attention Span</span>
+                        <span class="keyword">Learning tool</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/123inVYcJdAghh0p1JQ5BmkG7iuQC9E-4/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://drive.google.com/file/d/1yvau9-ZVypTUtFoKvAScNvVWSV1pxHov/view?usp=drivesdk" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                        <a href="https://isbell0.github.io/brainsprout/" target="_blank" class="project-link interactive-link">🖱 Try It</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 12 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team12.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 12 </div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Jackson Cheung, Njeri Kimani, Naw Day Day Soe Win</div>
+                    <h3>Prosper: Financial literacy application supporting young adults in developing
+financial knowledge through interactive simulations and guided learning. </h3>
+                    <p class="description">For undergraduate college students, it's their first time living alone and are confused on how to spend their money responsibly. Many budgeting apps have a high entry cost, from complex learning periods to understanding the app's budgeting methodology to writing down their goals ( students might be unaware or confused on their own budgeting goals). This can scare off college students who do want to manage their budgeting process, resulting in burnout and abandonment of their budgeting goals. Through our design, we want to make sure the app is simple and easy to use, to not overwhelm students. </p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Financial Literacy</span>
+                        <span class="keyword">Finance</span>
+                        <span class="keyword">Budgeting</span>
+                        <span class="keyword">Money Management</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1h5Pd04_ItN2iqxchsKcMoCYd5eC-r-Lu/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://drive.google.com/file/d/17vD2hf1Rwdtd5MfXcZrPKUo8b_HoMahr/view?usp=sharing" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 13 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team13.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 13</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Salma Ali, Rameen Niazi, Salma Jama</div>
+                    <h3>StudyDate: A peer-matching app that helps college students connect with study partners in
+large classes and reduces social barriers through structured, low-pressure interactions.</h3>
+                    <p class="description">Students in large classes often struggle with the same topics but do not know who else is struggling too. Many students feel shy or uncomfortable asking for help in front of others, so they study alone. Classes also do not give students an easy way to find classmates with the same learning problems or styles. This can make students feel isolated and less motivated, which hurts their understanding. </p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">UW</span>
+                        <span class="keyword">Academic Support</span>
+                        <span class="keyword">Study Partners</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1EY061q5vxiUCNltWRFqnXOgPMxWeXCAn/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://drive.google.com/file/d/1bf-IpxbfGaHs2Yqy8Inwi17lmCYKDvE7/view?usp=sharing" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 14 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team14.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 14</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Neeva Shrestha, Hailey Xu, Kaylie Chon</div>
+                    <h3>BridgeUW: An app where you set goals, build skills,
+and connect with mentors to prepare for your future career</h3>
+                    <p class="description">In conclusion, undergraduate students in biomedical and health informatics at the University of Washington lack a cohesive learning experience that meaningfully combines computer science, information systems, and biological sciences. While students gain specific knowledge through coursework, they are usually left to independently combine these concepts across fields without structured guidance, like other majors. This leads to gaps between understanding concepts in class and real-world application, leaving students feeling unprepared for research, internships, and careers in this field. While there are a few BIME (Biomedical informatics and education) courses that allow students to declare their major as Informatics, with a specialization in biomedical and health informatics, there aren’t enough resources and assistance to students who want to pursue this career path at the University of Washington. Therefore, there is a clear need for a design that supports integrative thinking, builds confidence and clarity, and helps students apply knowledge across all fields and in the workforce. </p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">UW</span>
+                        <span class="keyword">Mentorship</span>
+                        <span class="keyword">Career Preparation</span>
+                        <span class="keyword">Interdisciplinary Learning</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1AAujXiFheO4JLyXB8pkgVJu_yH3WpXeZ/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://youtu.be/AcyjvNzbyHE" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 15 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team15.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 15</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Christina Nguyen, Leo Tran, Shayna Chang</div>
+                    <h3>StarTips: A mobile app that assists university students in improving their study habits and mental wellbeing by identifying their learning style plus recommending effective study strategies alongside a virtual pet reward system.</h3>
+                    <p class="description">Many college students have declining mental health, specifically anxiety and depression. A cause for the worsening depression and anxiety in students is due to studying habits. Many students tend to adapt unhealthy studying methods in order to keep up with coursework. We will assess each user about their preferences, current habits, etc, in order to learn how they work best, then provide study methods and habits based on their answers.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Mental Well-Being</span>
+                        <span class="keyword">Study Habits</span>
+                        <span class="keyword">Motivation</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1oIP8CKTKQ6QJkqXmQ0HVMfbHiDIfM_wT/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://www.youtube.com/watch?v=m9__VuXSuXs" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 16 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team16.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 16</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Joyce, Larissa, Iker</div>
+                    <h3>ProgressViz: An online learning platform with visual learning heatmaps, targeted feedback, and a peer challenge arena for university students.</h3>
+                    <p class="description">In many online learning platforms, learners often find it hard to keep their motivation because they can't see if they are actually improving. Most current course structures focus too much on finishing tasks like checking off a box, but they don't help learners recognize their real growth in understanding or skills. When this progress feels invisible, students start to doubt if their effort is worth it and eventually quit. This issue is related to how feedback and self assessment are designed. We believe that improving how learning progress is experienced through better design is a great opportunity to make online education more effective.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Online Leaning</span>
+                        <span class="keyword">Education</span>
+                        <span class="keyword">Visual Learning</span>
+                         <span class="keyword">Progress Tracking</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1QSBeGqjVcOwTVKfo7oTDMUH_gF90_whh/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://youtu.be/fQcJUpkmFVY" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                        <a href="https://raw.githack.com/Joyce061026/info360group16/refs/heads/main/index.html" target="_blank" class="project-link interactive-link">🖱 Try It</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 17 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team17.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 17</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Neha, Salman, Jiyoon</div>
+                    <h3>Aligned: A Learning Platform that Prioritizes Understanding Over Completion</h3>
+                    <p class="description">Online learning platforms play a central role in K–12 education, yet they often rely on completion-based metrics and one size fits all feedback to represent student learning. These indicators can mask shallow understanding, allowing students to appear successful while struggling with core concepts. Because teachers depend on platform data to guide instruction, this misrepresentation makes it difficult to identify when students need support. Addressing this problem requires rethinking how learning progress and understanding are communicated within online learning environments so that learning, not just task completion, is done.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Online Learning/span>
+                        <span class="keyword">Education</span>
+                        <span class="keyword">Learning tool</span>
+                        <span class="keyword">Progress tracking</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/14oAxRe1hPaQG-xX9PvU5QcNBVvKJG_GE/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://drive.google.com/file/d/1DCIYQsznGia331ibwDin5ao5loZhjh9U/view?usp=sharing" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 18 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team18.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 18</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Kameron Bui, Avanthika Arun, Jessica Liu</div>
+                    <h3>StudyFlow: A study management platform that helps students plan, focus, and track their learning by integrating study planning, focus sessions, and academic assistance into one unified workflow.</h3>
+                    <p class="description">AI tutoring tools in K-12 education currently define learning too narrowly by focusing on correctness and speed, while ignoring students’ emotional experiences during learning. This creates a gap where frustration, anxiety, or disengagement go unrecognized, leading to negative learning cycles rather than persistence and growth. Younger students, who are still developing emotional regulation skills, are especially impacted by systems that provide repetitive corrective feedback without emotional support. The core problem is not a lack of personalized content, but a lack of emotionally responsive design that supports motivation, pacing, and reflection as part of the learning process. Addressing this problem requires rethinking how AI tutors interpret and respond to student struggle as part of learning, not just performance.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">AI Assistance</span>
+                        <span class="keyword">Education Support</span>
+                        <span class="keyword">Progress Tracking</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1-lUU6ibKfiQK7O0HnDBQCYBbR9Xsei70/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://drive.google.com/file/d/1HuPocEngFuVGDliOMec_dqpSs7cpmijb/view?usp=sharing" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                        <a href="https://studyflow-dev.lovable.app/" target="_blank" class="project-link interactive-link">🖱 Try It</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 19 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/Team19.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 19</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Nanyi Zhou , Angie Liu, Marlin Nie</div>
+                    <h3>PAWS: An application used to alleviate students' emotions, especially loneliness.</h3>
+                    <p class="description">College students are currently expected to succeed academically without being taught the emotional regulation skills necessary to handle high pressure environments, since current campus resources are reactive and crisis focused, they fail to provide the daily, low pressure learning opportunities students need to build resilience. Our design fill this gap by integrating playful, reflective emotional check ins into the daily academic routine. By reframing emotional awareness as a continuous learning process rather than a medical emergency, we enable students to proactively develop the self-awareness required for both academic persistence and personal well-being.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Mental Well-Being</span>
+                        <span class="keyword">Motivation</span>
+                        <span class="keyword">Emotional Support</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1LGLCi0JzOa_tgjGlqtz55ckAxnInk_Rw/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://drive.google.com/open?id=1x78mZuvtbets21xV51MjLwZWB6jGUpZd" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 20 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team20.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 20</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">MEMBER 1, MEMBER 2, MEMBER 3</div>
+                    <h3>hEATly: A cooking and nutrition app that supports college students through personalized recipe recommendations and nutrition tracking to develop healthy eating habits on a budget.</h3>
+                    <p class="description">College students need to be good at managing their nutrition for their learning but there aren't many chances to learn these skills the right way. The system they can easily reach out to only focuses on information about recipes, which doesn't consider any of the emotional and financial challenges that new learners face. This can lead to students developing unhealthy eating habits. We propose this design that makes cooking easier and help students learn good eating habits in a way that is good for the learning environment. This will give students the freedom to take care of their physical health which will help them focus on their studies.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Nutrition</span>
+                        <span class="keyword">Budget Eating</span>
+                        <span class="keyword">Cooking recipe recommendation</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1D4mDlo6rR3ktsT8EyrWvmt13ZZdIO9Ww/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://youtu.be/euYa74iwa7c" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                        <a href="https://riwoo-kim.github.io/INFO-360-tesst/" target="_blank" class="project-link interactive-link">🖱 Try It</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 21 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team21.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 21</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Emmalyn Nguyen, Thomas Gustafson, Kyle Tran</div>
+                    <h3>SmartLearn: A study platform that transforms textbook content into interactive, personalized learning tools for STEM students.</h3>
+                    <p class="description">College students often use physical and static digital textbooks that do not provide immediate access to specific self learning support. When students become confused or stuck at a specific page, they have limited ways to be able to ask questions or see how other people struggle. This lack of immediate and specific resources may cause students to fall behind or rely on cramming as a result of learning from textbooks becomes passive and isolating and inefficient instead of interactive and engaging.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">STEM</span>
+                        <span class="keyword">Leaning tool</span>
+                        <span class="keyword">Interactive Textbooks</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1QYJAHcrh-kId8p1KrawHo1zdbziF6Nu9/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://drive.google.com/file/d/1dRd0klXhWm2JC1HTL_SBRV4OU7YjnOTP/view" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                        <a href="https://emmalynnguyen.github.io/INFO360-final/" target="_blank" class="project-link interactive-link">🖱 Try It</a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- TEAM 22 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team22.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 22</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Jiuxin Xiao, Zhiting Chen, Jingrui Cao</div>
+                    <h3>SilverLearn: Supplement Reminder - A simple mobile application designed to help older adults manage daily supplements through reminders, easy recording, and clear confirmation feedback.</h3>
+                    <p class="description">Many older adults take dietary supplements every day. These supplements help support their health and daily nutrition. Many older adults take more than one supplement. Each supplement may have a different schedule. Managing these routines can be difficult.Some tools try to help people manage supplements. As a result, many seniors miss doses, double-dose, or become uncertain about what they have already taken, which impacts their long-term health and independence. SilverLearn addresses this need by providing a simple, intuitive supplement reminder system with clear notifications, easy recording, and immediate confirmation feedback.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Medication Reminders</span>
+                        <span class="keyword">Health support</span>
+                        <span class="keyword">Daily tracking</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://drive.google.com/file/d/1TkfFNZRpnTvNUzdmbcmtC_6a1nitqd6A/view?usp=sharing" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="https://youtu.be/HFLwjT2qWp4?si=3X8bbnGTovM6WrBM" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                        <a href="https://sprint-satin-25036983.figma.site/" target="_blank" class="project-link interactive-link">🖱 Try It</a>
+                    </div>
+                </div>
+            </article>
+
+             <!-- TEAM 23 -->
+            <article class="project-card">
+                <div class="card-image">
+                    <img src="images/team23.png" alt="SHORT DESCRIPTION">
+                    <div class="team-badge">TEAM 23</div>
+                </div>
+                <div class="card-content">
+                    <div class="meta-info">Yang Li, Ziyi Wang, Frank Shi</div>
+                    <h3>Senior ScamGuard Simulator: Help older adults build confidence and
+develop practical habits for responding to scams.</h3>
+                    <p class="description">In today's digital age, older adults increasingly need to learn how to use digital technologies safely. However, many older adults lack effective opportunities to develop the skills to identify AI-driven scams. With AI-generated voice cloning and deepfake scams becoming increasingly sophisticated, existing safeguards and information resources are insufficient to effectively help older adults learn how to recognize and respond to these threats. This creates a learning gap, where older adults are expected to navigate a high-risk digital environment independently but lack sufficient practice, feedback, and confidence-building experiences. The core of the problem is not just the existence of AI scams, but the lack of skills among older adults to identify these scams—skills we aim to help them develop.</p>
+                    <button class="read-more-btn" onclick="toggleAbstract(this)">Read more ▾</button>
+                    <div class="keywords-container">
+                        <span class="keyword">Scam prevention</span>
+                        <span class="keyword">Elderly</span>
+                        <span class="keyword">Digital safety</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="PROPOSAL LINK" target="_blank" class="project-link">📄 View Proposal</a>
+                        <a href="VIDEO LINK" target="_blank" class="project-link video-link">▶ Watch Video</a>
+                        <a href="https://ziyiw888.github.io/Senior-Anti-Scam-Learning-Platform/" target="_blank" class="project-link interactive-link">🖱 Try It</a>
+                    </div>
+                </div>
+            </article>
+
+
+        </div><!-- end #project-grid -->
     </main>
 
     <footer class="main-footer">
         <div class="container">
             <p><strong>Instructor:</strong> Johnny Cho</p>
-            <p><strong>Contributor:</strong> Ziyi Wang</p>
+            <p><strong>Contributors:</strong> Mai Ho </p>
         </div>
     </footer>
 
     <script>
-        // Optional: Simple search functionality
+        /* ── Search ── */
         document.getElementById('search-input').addEventListener('input', function(e) {
             const term = e.target.value.toLowerCase();
             const cards = document.querySelectorAll('.project-card');
-            
             cards.forEach(card => {
                 const text = card.innerText.toLowerCase();
                 card.style.display = text.includes(term) ? 'flex' : 'none';
             });
         });
+
+        /* ── Read More / Read Less toggle ── */
+        function toggleAbstract(btn) {
+            const description = btn.previousElementSibling;
+            const isExpanded = description.classList.contains('expanded');
+            if (isExpanded) {
+                description.classList.remove('expanded');
+                btn.textContent = 'Read more ▾';
+            } else {
+                description.classList.add('expanded');
+                btn.textContent = 'Read less ▴';
+            }
+        }
     </script>
 </body>
 </html>
